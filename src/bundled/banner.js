@@ -6,7 +6,7 @@ function define(_param_names, _factory) {
 }
 
 import * as vfs from "https://cdn.jsdelivr.net/npm/@typescript/vfs/+esm";
-import prettier_ts from "https://cdn.jsdelivr.net/npm/prettier@2.3.0/esm/parser-typescript.mjs";
+import prettier_ts from "https://cdn.jsdelivr.net/npm/prettier@2.5.1/esm/parser-typescript.mjs";
 
 async function InitMonacoSvelte(element, verbose=true) {
   console.assert(window.ts, "Expected global typescript instance: window.ts");

@@ -10,7 +10,7 @@ import analyze from "rollup-plugin-analyzer";
 
 import * as fs from "fs";
 
-const compiled_vfs = fs.readFileSync("./build/ts-out/src/vfs/vfs.js");
+const compiled_vfs = fs.readFileSync("./build/ts-out/src/lib/vfs.js");
 
 const intro = fs.readFileSync("./src/bundled/intro.js");
 const banner = fs

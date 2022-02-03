@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta charset='utf-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <title>Monaco </title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
     <style>
         html,
         body {
@@ -28,13 +28,19 @@
 <body>
 
     <div id="editor"></div>
-    <script src="https://cdn.jsdelivr.net/npm/typescript@4.2.3/lib/typescript.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.24.0/min/vs/loader.js"
-        integrity="sha256-AQ6VhJSh7/GzwMIdvsHxLVTAuDGw7QWflZTYkQThEds=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typescript@4.5.5/lib/typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.31.1/min/vs/loader.js" 
+        integrity="sha256-bGIu3PBy9LrH3PxOOIWfhaYxlVg+f1rJf5t7Jb4OI8A=" crossorigin="anonymous"></script>
     <script>
         //sets window.monaco
-        require.config({ paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.22.3/min/vs" }, });
-        window._editor_ready = new Promise((resolve) => require(["vs/editor/editor.main"], resolve));
+        require.config({ paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.31.1/min/vs" }, });
+        window._editor_ready = new Promise((resolve) => { 
+            
+            require(["vs/editor/editor.main"], () => {
+                window.monaco = monaco;
+                resolve(monaco);
+            });
+        });
     </script>
 
     <script type="module">
@@ -42,7 +48,10 @@
         async function main() {
             InitMonacoSvelte(document.getElementById('editor'), true);
         }
-        main();
+        window._editor_ready.then( () => {
+            main();
+        });
+        
     </script>
 
 </body>
